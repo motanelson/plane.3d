@@ -53,8 +53,8 @@ def main():
         # Desenhar triângulo
         triangle_points = [
             (triangle_x + triangle_width // 2, horizon_y ),  # Base inferior (centro)
-            (triangle_x, HEIGHT),  # Ponta do triângulo (no horizonte)
-            (triangle_x + triangle_width, HEIGHT),  # Base direita
+            (triangle_x - triangle_width, HEIGHT),  # Ponta do triângulo (no horizonte)
+            (triangle_x + triangle_width*2, HEIGHT),  # Base direita
            
         ]
         pygame.draw.polygon(WINDOW, triangle_color, triangle_points)
