@@ -61,9 +61,9 @@ def main():
         ]
         pygame.draw.polygon(WINDOW, triangle_color, triangle_points)
         zpos_points = [
-            (WIDTH //2, (2*zpos+horizon_y)+2*zpos ),  # Base inferior (centro)
-            (WIDTH //2-2*zpos, (2*zpos+horizon_y)+4*zpos ),  # Ponta do triângulo (no horizonte)
-            (WIDTH //2+2*zpos, (2*zpos+horizon_y)+4*zpos ),  # Base direita
+            (triangle_x+triangle_width // 2, (2*zpos+horizon_y)+2*zpos ),  # Base inferior (centro)
+            (triangle_x+triangle_width // 2 -2*zpos, (2*zpos+horizon_y)+4*zpos ),  # Ponta do triângulo (no horizonte)
+            (triangle_x+triangle_width //2 +2*zpos, (2*zpos+horizon_y)+4*zpos ),  # Base direita
            
         ]
         pygame.draw.polygon(WINDOW, BLACK, zpos_points)
