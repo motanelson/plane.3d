@@ -20,10 +20,10 @@ triangle_x = WIDTH // 2 - triangle_width // 2  # Posição inicial no eixo X
 triangle_color = WHITE
 triangle_speed = 5
 vertical_speed = 5
-
+zpos=0
 # Função principal
 def main():
-    global horizon_y, triangle_x
+    global horizon_y, triangle_x,zpos
 
     clock = pygame.time.Clock()
     running = True
@@ -32,7 +32,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-
+        zpos=zpos+1
+        if zpos>HEIGHT*10//50:
+            zpos=0
         # Movimentação com teclas
         keys = pygame.key.get_pressed()
         if keys[pygame.K_DOWN] and horizon_y < HEIGHT - 100:  # Mover horizonte para baixo
@@ -58,7 +60,13 @@ def main():
            
         ]
         pygame.draw.polygon(WINDOW, triangle_color, triangle_points)
-
+        zpos_points = [
+            (WIDTH //2, (2*zpos+horizon_y)+2*zpos ),  # Base inferior (centro)
+            (WIDTH //2-2*zpos, (2*zpos+horizon_y)+4*zpos ),  # Ponta do triângulo (no horizonte)
+            (WIDTH //2+2*zpos, (2*zpos+horizon_y)+4*zpos ),  # Base direita
+           
+        ]
+        pygame.draw.polygon(WINDOW, BLACK, zpos_points)
         # Atualizar a tela
         pygame.display.flip()
         clock.tick(60)
