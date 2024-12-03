@@ -1,6 +1,3 @@
-# q.sharp
+# tree.memory
 
-q# hello world
-
-try it for free 
-https://azure.microsoft.com/en-us/products/quantum/
+easy tree on memory
