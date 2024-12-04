@@ -1,0 +1,9 @@
+ door1|0
+  door2|1
+  door3|2
+ door4|3
+  door5|4
+  door6|5
+  door7|6
+  door8|7
+  door9|8
