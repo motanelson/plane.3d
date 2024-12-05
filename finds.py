@@ -3,6 +3,8 @@ def attributs(content,simbols):
     cursors=0
     pos=0
     posactual=0
+    posactual2=0
+    posactual3=0
     returnlist=[]
     chars=""
     returnstring=""
@@ -18,19 +20,34 @@ def attributs(content,simbols):
                 
                 if posactual<pos or pos==-1:
                     pos=posactual
+                    chars=simbol
         if pos>-1:
-            returnstring=content[cursors:pos].strip()
-            if returnstring!="":
-                returnlist=returnlist+[returnstring]
-            cursors=pos+1
-            if cursors>len(content)-1:
-                cursors=len(content)-1
-                ttrue=False 
+            if chars=="'" or chars=='"':
+                posactual3=content.find('"',pos+1)
+                posactual2=content.find("'",pos+1)
+                if posactual3<0:
+                    posactual3=posactual2
+                if posactual2<0:
+                    posactual2=posactual3
+                if posactual3<posactual2:
+                    posactual2=posactual3
+                if posactual2>-1:
+                    pos=posactual2
+                    
+            if 0==0:
+                returnstring=content[cursors:pos].strip()
+                if returnstring!="":
+                    returnstring=returnstring.replace("|"," ")
+                    returnlist=returnlist+[returnstring]
+                cursors=pos+1
+                if cursors>len(content)-1:
+                    cursors=len(content)-1
+                    ttrue=False 
         else:
             ttrue=False
 
     return returnlist
-a='body href="https://www.w3schools.com" color="red"' 
+a='body href="https://www.w3schools.com" color="red" hello="hello world"' 
 c=a[:]
 l1=["|","'",'"']
 a=c.replace(" ","|")
