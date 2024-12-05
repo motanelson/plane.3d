@@ -44,6 +44,11 @@ def attributs(content,simbols):
                     cursors=len(content)-1
                     ttrue=False 
         else:
+             if cursors!=len(content)-1:
+                 returnstring=content[cursors:].strip()
+            
+                 returnlist=returnlist+[returnstring]
+
             ttrue=False
 
     return returnlist
