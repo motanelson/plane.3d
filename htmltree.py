@@ -34,8 +34,117 @@ class nodes:
            
 
 
+def attributs(content,simbols):
+    ttrue=True
+    cursors=0
+    pos=0
+    posactual=0
+    posactual2=0
+    posactual3=0
+    returnlist=[]
+    chars=""
+    returnstring=""
+    while ttrue:
+        chars=""
+        posactual=-1
+        pos=-1
+        
+        for simbol in simbols:
+            posactual=content.find(simbol,cursors)
+            
+            if posactual!=-1:
+                
+                if posactual<pos or pos==-1:
+                    pos=posactual
+                    chars=simbol
+        if pos>-1:
+            if chars=="'" or chars=='"':
+                posactual3=content.find('"',pos+1)
+                posactual2=content.find("'",pos+1)
+                if posactual3<0:
+                    posactual3=posactual2
+                if posactual2<0:
+                    posactual2=posactual3
+                if posactual3<posactual2:
+                    posactual2=posactual3
+                if posactual2>-1:
+                    pos=posactual2+1
+                    
+            if 0==0:
+                returnstring=content[cursors:pos].strip()
+                if returnstring!="":
+                    
+                    returnlist=returnlist+[returnstring]
+                cursors=pos+1
+                if cursors>len(content)-1:
+                    cursors=len(content)-1
+                    ttrue=False 
+        else:
+             if cursors!=len(content)-1:
+               returnstring=content[cursors:].strip()
+            
+               returnlist=returnlist+[returnstring]
+             ttrue=False
 
+    return returnlist
 
+def aattributs(content,simbols):
+    ttrue=True
+    cursors=0
+    pos=0
+    posactual=0
+    posactual2=0
+    posactual3=0
+    returnlist=[]
+    chars=""
+    returnstring=""
+    
+    while ttrue:
+        chars=""
+        posactual=-1
+        pos=-1
+        
+        for simbol in simbols:
+            
+            posactual=content.find(simbol,cursors)
+            
+            if posactual!=-1:
+                if posactual<=pos or pos==-1:
+                    
+                    pos=posactual
+                    chars=simbol
+        
+        if pos>-1:
+            
+            if chars=="'" or chars=='"':
+                posactual3=content.find('"',pos+1)
+                posactual2=content.find("'",pos+1)
+                if posactual3<0:
+                    posactual3=posactual2
+                if posactual2<0:
+                    posactual2=posactual3
+                if posactual3<posactual2:
+                    posactual2=posactual3
+                if posactual2>-1:
+                    pos=posactual2+1
+                    
+            
+            returnstring=content[cursors:pos].strip()
+            
+            returnlist=returnlist+[returnstring]
+            cursors=pos+1
+            if cursors>len(content)-1:
+                cursors=len(content)-1
+                ttrue=False 
+        else:
+            if cursors!=len(content)-1:
+               returnstring=content[cursors:].strip()
+            
+               returnlist=returnlist+[returnstring]
+
+            ttrue=False
+
+    return returnlist
 def adds(tree,n,counts,tabs,stack):
     if counts==1:
         if n.find("</")>-1:
@@ -84,9 +193,14 @@ def processs(content):
     if contentpos>-1:
         content=content[:contentpos]
     tabs=1
-    tags=content.split(">")
+    l1=[">","'",'"']
+    tags=attributs(content,l1)
+    
+    
     for tag in tags:
-        listtags=tag.split("<")
+        l1=["<","'",'"']
+        listtags=aattributs(tag,l1)
+        
         count=0
         for ttag in listtags:
             ttag=ttag.strip()
@@ -103,7 +217,7 @@ contents=f1.read()
 f1.close()
 contents=contents.replace("\n","\\n")
 contents=contents.replace("\r","\\r")
-content=processs(contents)
-content.report()
+contentss=processs(contents)
+contentss.report()
 
 
