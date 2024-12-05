@@ -49,7 +49,7 @@ def attributs(content,simbols):
             
                  returnlist=returnlist+[returnstring]
 
-            ttrue=False
+             ttrue=False
 
     return returnlist
 a='body href="https://www.w3schools.com" color="red" hello="hello world"' 
