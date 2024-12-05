@@ -9,22 +9,23 @@ def attributs(content,simbols):
     while ttrue:
         chars=""
         posactual=-1
-        pos=cursors
+        pos=-1
         
         for simbol in simbols:
             posactual=content.find(simbol,cursors)
             
-            if posactual!=-1 and posactual>=cursors:
+            if posactual!=-1:
                 
-                if posactual<pos or pos==cursors:
-                    
+                if posactual<pos or pos==-1:
                     pos=posactual
-        if pos>cursors:
-            returnstring=content[cursors:pos]
-            returnlist=returnlist+[returnstring]
+        if pos>-1:
+            returnstring=content[cursors:pos].strip()
+            if returnstring!="":
+                returnlist=returnlist+[returnstring]
             cursors=pos+1
             if cursors>len(content)-1:
-                cursors=len(content)-1 
+                cursors=len(content)-1
+                ttrue=False 
         else:
             ttrue=False
 
@@ -33,4 +34,6 @@ a='body href="https://www.w3schools.com" color="red"'
 c=a[:]
 l1=["|","'",'"']
 a=c.replace(" ","|")
-print(attributs(a,l1))
+list1=attributs(a,l1)
+for aa in list1:
+    print(aa)
