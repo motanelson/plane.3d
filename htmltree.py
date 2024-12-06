@@ -176,7 +176,42 @@ def adds(tree,n,counts,tabs,stack):
              stack[len(stack)-1].nexts=nodex
              stack[len(stack)-1]=nodex
     return tree,tabs,stack
+def getScript(content, simbols1,simbols2):
+    returnscript=[]
+    ttrue=True
+    pos=0
+    pos2=0
+    cursorStart=-1
+    cursorEnd=-1
+    while ttrue:
+        cursorStart=-1
+        cursorEnd=-1
 
+        for n in simbols1:
+            pos=content.find(n)
+            if pos>-1:
+                if cursorStart==-1:
+                    cursorStart=pos
+                elif pos<cursorStart:
+                    cursorStart=pos
+        for n in simbols2:
+            pos2=content.find(n)
+            if pos2>-1:
+                if cursorEnd==-1:
+                    cursorEnd=pos2
+                elif pos2<cursorEnd:
+                    cursorEnd=pos2
+        if cursorStart>-1 and cursorEnd>-1:
+            cursorEnd=cursorEnd+len(simbols2[0])
+            returnscript=returnscript+[content[cursorStart:cursorEnd]]
+            
+            cont1=content[cursorEnd:]
+            content=content[:cursorStart]+cont1
+        else:
+            ttrue=False 
+
+            
+    return returnscript,content
 def processs(content):
     trees=nodes("html")
     stack=[trees]
@@ -192,6 +227,9 @@ def processs(content):
         contentpos=content.find("</BODY")
     if contentpos>-1:
         content=content[:contentpos]
+    l1=["<script","<SCRIPT"]
+    l2=["</script>","</SCRIPT>"]
+    _,content=getScript(content, l1,l2)
     tabs=1
     l1=[">","'",'"']
     tags=attributs(content,l1)
