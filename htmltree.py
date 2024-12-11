@@ -131,10 +131,11 @@ def aattributs(content,simbols):
                     ons=pos
             
             
-            returnstring=content[cursors:pos]
+            
             if chars==simbols[0]:
-                
-                returnlist=returnlist+[returnstring.strip()]
+                returnstring=content[cursors:pos].strip()
+                if returnstring!="":
+                     returnstring=returnlist=returnlist+[returnstring]
                 cursors=pos+1
                     
                 ons=cursors
