@@ -129,29 +129,27 @@ def aattributs(content,simbols):
                 if posactual2>-1:
                     pos=posactual2+1
                     ons=pos
-                    
+            
+            
+            returnstring=content[cursors:pos]
             if chars==simbols[0]:
                 
-                
-                returnstring=content[cursors:pos]
-                if returnstring!="":
+                returnlist=returnlist+[returnstring.strip()]
+                cursors=pos+1
                     
-                    returnlist=returnlist+[returnstring.strip()]
-                    cursors=pos+1
-                    ons=cursors
-                else:
-                    ttrue=False
-            if ons>=len(content)-1:
-                ons=len(content)-1
-                ttrue=False 
+                ons=cursors
+                
+            
+            
+            
         else:
             
-            returnstring=content[cursors:].strip()
-            print(returnstring)
-            returnlist=returnlist+[returnstring]
+            returnlist=returnlist+[content[cursors:].strip()]
+            
+           
 
             ttrue=False
-
+    
     return returnlist
 def adds(tree,n,counts,tabs,stack):
     if counts==1:
